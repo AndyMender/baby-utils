@@ -1,0 +1,3 @@
+cat: a four-legged feline
+dog: a four-legged canine
+girl: a young female
