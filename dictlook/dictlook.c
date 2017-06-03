@@ -11,14 +11,12 @@ struct entry
 	char definition[80];
 };
 
+struct entry dictionary[100];
+
 /* takes an open FILE object, loads the dictionary records into an array
  * and returns a pointer to that array */
 struct entry *dictLoader (FILE *dictFile)
 {
-	/* should the dict be global or local to this function?
-	 * the returned pointer points to it either way... */
-	struct entry dictionary[100];
-	struct entry *dictPtr = dictionary;
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
@@ -32,7 +30,7 @@ struct entry *dictLoader (FILE *dictFile)
 		i++;
 	}
 	
-	return dictPtr;
+	return dictionary;
 }
 
 /* takes a pointer to a dictionary array, looks for a matching word and returns
@@ -63,7 +61,7 @@ int main (const int argc, const char *argv[])
 	if ( argc == 1 )
 	{
 		printf ("No arguments were specified.\n"
-				"Use: dictlook <word> [dictionary file]\n\n");
+				"Use: dictlook <word> [dictionary file]\n");
 		exit (EXIT_SUCCESS);
 	}
 	
