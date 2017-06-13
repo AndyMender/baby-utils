@@ -6,3 +6,4 @@ This is a small set of stand-alone C source files written for coding practice. S
 Programs:
 dictlook - a simple 2-function program that opens a file-based dictionary database and looks for a definition of a command-line specified entry (example file dictionary provided)
 talkie - a simple AI algorithm that tries to build a relationship with the user based on how well his/her answers match the expectations of the AI
+t_World - a "Hello, World!" program with a loop including sleep() to test multi-threading via POSIX threads (pthreads)
