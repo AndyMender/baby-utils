@@ -3,6 +3,7 @@
  
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* simple dictionary entry structure */
 struct entry
@@ -38,10 +39,10 @@ struct entry *dictLoader (FILE *dictFile)
 struct entry *dictLookup (struct entry *dictPtr, const char *keyword)
 {
 	for ( ; *dictPtr->name != 0; dictPtr++ )
-		if ( *dictPtr->name == *keyword )
+		if ( strcmp (dictPtr->name, keyword) == 0 )
 			return dictPtr;
 			
-	/* Fall through - no matching key found in dictionary */
+	/* Fall through - no matching entry found in dictionary */
 	return NULL;
 }
 
@@ -53,7 +54,7 @@ int main (const int argc, const char *argv[])
 	
 	/* variable definitions */
 	FILE *dictFile;
-	struct entry * matchPtr;
+	struct entry *matchPtr;
 	char choice;
 	char newDefinition[80];
 	
@@ -69,7 +70,7 @@ int main (const int argc, const char *argv[])
 	if ( argc > 3 )
 	{
 		fprintf (stderr, "Too many arguments were specified: %i\n"
-				 "Use: dictlook <word> [dictionary file]\n");
+				 "Use: dictlook <word> [dictionary file]\n", argc);
 		exit (EXIT_FAILURE);
 	}
 	
@@ -86,7 +87,7 @@ int main (const int argc, const char *argv[])
 	
 	/* was the record found? */
 	if ( matchPtr != NULL )
-		printf ("%s\n", matchPtr->definition);
+		printf ("%s: %s\n", matchPtr->name, matchPtr->definition);
 	else
 	{
 		printf ("Word %s not found in dictionary.\n", argv[1]);
