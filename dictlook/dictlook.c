@@ -14,8 +14,8 @@ struct entry
 
 struct entry dictionary[100];
 
-/* takes an open FILE object, loads the dictionary records into an array
- * and returns a pointer to that array */
+/* takes a pointer to an open FILE object, loads the dictionary records 
+ * from the file into an array of entry structs and returns a pointer to it */
 struct entry *dictLoader (FILE *dictFile)
 {
 	char *line = NULL;
