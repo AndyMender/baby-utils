@@ -6,11 +6,11 @@
 #include <unistd.h>
 
 /* Simple function to execute in a new thread */
-void * helloWorldThreaded (void * argvp) {
+void * helloWorldThreaded () {
   
   for ( int i = 0; i < 5; i++ ) {
 	  printf ("Hello, World!\n");
-	  sleep (10);
+	  sleep (3);
   }
   
   // return NULL; superficial
@@ -25,7 +25,7 @@ int main (void) {
   /* Create new thread and launch */
   pthread_create (&thread_id, NULL, helloWorldThreaded, NULL);
   
-  /* Grab the output of the thread if it finishes */
+  /* Grab the output of the thread when it finishes */
   pthread_join (thread_id, NULL);
   
   printf ("After thread execution.\n");
